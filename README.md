@@ -17,17 +17,32 @@ Replace this paragraph with your own summary of what your version does.
 
 ## How The System Works
 
-Explain your design in plain language.
+_What features does each `Song` use in your system_
+  - genre: 0.30
+  - mood: 0.20
+  - energy: 0.15
+  - tempo_bpm: 0.10
+  - danceability: 0.10
+  - valence: 0.10
+  - acousticness: 0.05
+  - artist (optional): not considered
 
-Some prompts to answer:
+_What information does your `UserProfile` store_
+  - User can list down their favorite genre and mood. The model will use this information to recommend songs.
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+_How does your `Recommender` compute a score for each song_
+- It uses the following formula:
+  - Energy_pts   = 3.5 * (1.0 - abs(song["energy"]  - user_prefs.get("energy", 0.5)))
+  - valence_pts = 2.5 * (1.0 - abs(song["valence"] - user_prefs.get("valence", 0.5)))
+  - danceability_pts = 3.0 * (1.0 - abs(song["danceability"] - user_prefs.get("danceability", 0.5)))
+  - acousticness_pts = 2.0 * (1.0 - abs(song["acousticness"] - user_prefs.get("acousticness", 0.5)))
+  - tempo_norm = (song["tempo_bpm"] - tempo_min) / (tempo_max - tempo_min) ; tempo normalization to 0 to 1
+  - tempo_pts = 2.5 * (1.0 - abs(tempo_norm - user_prefs.get("tempo_norm", 0.5)))
 
-You can include a simple diagram or bullet list if helpful.
+  - Total score = valence_pts + danceability_pts + acousticness_pts + tempo_pts  
+
+_How do you choose which songs to recommend_
+  - We will recommend songs based on the weighting system provided above. If the total score for any song is greater than 0.9, then it will be recommended to the user.
 
 ---
 
