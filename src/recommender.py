@@ -28,6 +28,7 @@ class UserProfile:
     favorite_mood: str
     target_energy: float
     likes_acoustic: bool
+    likes_danceable: bool = False
 
 class Recommender:
     """
@@ -39,6 +40,7 @@ class Recommender:
 
     def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
         # TODO: Implement recommendation logic
+        # 
         return self.songs[:k]
 
     def explain_recommendation(self, user: UserProfile, song: Song) -> str:
