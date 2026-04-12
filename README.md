@@ -36,20 +36,20 @@ _How do you choose which songs to recommend_
 
 
 ## Phase 2, Step 5: Finalized Algorithm Recipe
-flowchart TD-------------------------------
-    - A[Input: User Preferences<br/>favorite genre, favorite mood, target energy]
-    - B[Load songs from songs.csv]
-    - C[For each song in dataset]
-    - D{Genre matches user?}
-    - E[+2.0 points]
-    - F{Mood matches user?}
-    - G[+1.0 point]
-    - H[Compute energy similarity<br/>1 - abs(song.energy - target_energy)]
-    - I[Add energy similarity points]
-    - J[Save song + total score]
-    - K[Sort all songs by score descending]
-    - L[Select Top K songs]
-    - M[Output recommendations with explanations]
+flowchart TD
+  - A[Input: User Preferences<br/>favorite genre, favorite mood, target energy]
+  - B[Load songs from songs.csv]
+  - C[For each song in dataset]
+  - D{Genre matches user?}
+  - E[+2.0 points]
+  - F{Mood matches user?}
+  - G[+1.0 point]
+  - H[Compute energy similarity<br/>1 - abs(song.energy - target_energy)]
+  - I[Add energy similarity points]
+  - J[Save song + total score]
+  - K[Sort all songs by score descending]
+  - L[Select Top K songs]
+  - M[Output recommendations with explanations]
 
     A --> B --> C
     C --> D
