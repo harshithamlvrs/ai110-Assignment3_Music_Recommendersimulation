@@ -92,7 +92,7 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
 
     # Phase 2 recipe: reward exact genre and mood matches.
     if user_genre and song_genre == user_genre:
-        score += 2.0
+        score += 1.0
         reasons.append("genre matches your preference")
 
     if user_mood and song_mood == user_mood:
@@ -103,7 +103,7 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     target_energy = float(user_prefs.get("energy", 0.5))
     song_energy = float(song.get("energy", 0.5))
     energy_similarity = max(0.0, 1.0 - abs(song_energy - target_energy))
-    score += energy_similarity
+    score += 2.0 * energy_similarity
     reasons.append(f"energy similarity: {energy_similarity:.2f}")
 
     return (score, reasons)
