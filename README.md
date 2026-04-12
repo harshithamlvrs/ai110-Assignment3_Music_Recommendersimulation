@@ -70,6 +70,9 @@ flowchart TD-------------------------------
     H --> I --> J --> C
     C --> K --> L --> M
 
+## Phase3: Step 4
+ - Terminal output showing the recommendations (song titles, scores, and reasons)
+![alt text](image.png)
 ---
 
 ## Getting Started
